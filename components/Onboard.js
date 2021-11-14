@@ -5,25 +5,22 @@ import AppIntroSlider from 'react-native-app-intro-slider'
 import { useFonts } from 'expo-font';
 
 import colors from '../assets/colors/colors';
-import onboard1 from '../assets/images/Onboard1.png';
-import onboard2 from '../assets/images/Onboard2.png';
-import onboard3 from '../assets/images/Onboard3.png';
 
 const data = [
   {
     title: 'Save time by tracking your studies',
     text: 'Schedule your classes, assignments, quizzes and more',
-    image: onboard1,
+    image: require('../assets/images/Onboard1.png'),
   },
   {
     title: 'Stay on top of your education',
     text: 'Reduce your stress, increase your productivity',
-    image: onboard2,
+    image: require('../assets/images/Onboard2.png'),
   },
   {
     title: 'Spend more time doing the things you love',
     text: "Get started within five minutes",
-    image: onboard3,
+    image: require('../assets/images/Onboard3.png'),
   },
 ];
 
@@ -41,25 +38,43 @@ const Onboard = () => {
   const renderItem = ({ item }) => {
     return (
       <View
-        style={[
-          styles.slide,
-        ]}>
-        <Text style={[
-          styles.title, {
-            fontFamily: 'OpenSansBold',
-          }
-        ]}>{item.title}</Text>
+        style={[styles.slide]}>
         <Image source={item.image} style={styles.image} />
-        <Text style={[
-          styles.text, {
-            fontFamily: 'OpenSansSemiBold',
-          }
-        ]}>{item.text}</Text>
+        <View>
+          <Text style={[
+            styles.title, {
+              fontFamily: 'OpenSansBold',
+            }
+          ]}>{item.title}</Text>
+          <Text style={[
+            styles.text, {
+              fontFamily: 'OpenSansSemiBold',
+            }
+          ]}>{item.text}</Text>
+        </View>
       </View>
     )
   }
 
   const keyExtractor = (item) => item.title;
+
+  const renderNextButton = () => (
+    <View style={styles.buttonCircle}>
+      <Text style={styles.buttonText}>NEXT</Text>
+    </View>
+  );
+
+  const renderDoneButton = () => (
+    <View style={[styles.buttonCircle, { backgroundColor: colors.blue, marginRight: -30 }]}>
+      <Text style={[styles.buttonText, { color: colors.white }]}>DONE</Text>
+    </View>
+  );
+
+  const renderPrevButton = () => (
+    <View style={styles.buttonCircle}>
+      <Text style={styles.buttonText}>PREV</Text>
+    </View>
+  )
 
   return (
     <View style={{ flex: 1 }}>
@@ -68,6 +83,12 @@ const Onboard = () => {
         keyExtractor={keyExtractor}
         renderItem={renderItem}
         data={data}
+        dotStyle={styles.dot}
+        activeDotStyle={styles.activeDot}
+        showPrevButton
+        renderNextButton={renderNextButton}
+        renderDoneButton={renderDoneButton}
+        renderPrevButton={renderPrevButton}
       />
     </View>
   )
@@ -93,6 +114,26 @@ const styles = StyleSheet.create({
     fontSize: 22,
     color: colors.blue,
     textAlign: 'center',
+  },
+  dot: {
+    backgroundColor: colors.blueFaded,
+  },
+  activeDot: {
+    backgroundColor: colors.blue,
+  },
+  buttonCircle: {
+    width: 80,
+    height: 40,
+    backgroundColor: colors.white,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 10,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontFamily: 'OpenSansSemiBold',
+    color: colors.blue,
   },
 });
 
