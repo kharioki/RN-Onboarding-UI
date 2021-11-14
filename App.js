@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
+import Home from './components/Home';
 
 import Onboard from './components/Onboard';
 
 export default function App() {
+  const [showOnboard, setShowOnboard] = useState(true);
+
+  const handleOnboardComplete = () => {
+    setShowOnboard(false);
+  };
+
   return (
     <>
-      <Onboard />
+      {showOnboard && <Onboard handleDone={handleOnboardComplete} />}
+      {!showOnboard && <Home />}
     </>
   );
 }

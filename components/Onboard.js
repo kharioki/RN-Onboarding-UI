@@ -25,7 +25,7 @@ const data = [
 ];
 
 
-const Onboard = () => {
+const Onboard = ({ handleDone }) => {
   const [loaded] = useFonts({
     OpenSansBold: require('../assets/fonts/OpenSans-Bold.ttf'),
     OpenSansSemiBold: require('../assets/fonts/OpenSans-SemiBold.ttf'),
@@ -89,6 +89,7 @@ const Onboard = () => {
         renderNextButton={renderNextButton}
         renderDoneButton={renderDoneButton}
         renderPrevButton={renderPrevButton}
+        onDone={handleDone}
       />
     </View>
   )
