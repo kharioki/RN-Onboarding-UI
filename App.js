@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { useFonts } from 'expo-font';
+
 import colors from './assets/colors/colors';
+import onboard1 from './assets/images/Onboard1.png';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -17,6 +19,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Image source={onboard1} />
       <Text style={{ fontFamily: 'OpenSansSemiBold', fontSize: 30, color: colors.blue }}>Wassup!</Text>
       <StatusBar style="auto" />
     </View>
