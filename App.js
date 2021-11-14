@@ -1,28 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { useFonts } from 'expo-font';
+import { StyleSheet } from 'react-native';
 
-import colors from './assets/colors/colors';
-import onboard1 from './assets/images/Onboard1.png';
+import Onboard from './components/Onboard';
 
 export default function App() {
-  const [loaded] = useFonts({
-    OpenSans: require('./assets/fonts/OpenSans-Regular.ttf'),
-    OpenSansBold: require('./assets/fonts/OpenSans-Bold.ttf'),
-    OpenSansSemiBold: require('./assets/fonts/OpenSans-SemiBold.ttf'),
-  });
-
-  if (!loaded) {
-    return null;
-  }
-
   return (
-    <View style={styles.container}>
-      <Image source={onboard1} />
-      <Text style={{ fontFamily: 'OpenSansSemiBold', fontSize: 30, color: colors.blue }}>Wassup!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <Onboard />
+    </>
   );
 }
 
